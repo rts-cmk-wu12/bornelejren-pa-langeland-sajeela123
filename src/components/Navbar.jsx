@@ -1,13 +1,26 @@
-// src/components/Navbar.jsx
+
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <nav style={{ backgroundColor: '#d0000b', padding: '1rem', color: 'white' }}>
-      <Link to="/" style={{ marginRight: '1rem', color: 'white' }}>Forside</Link>
-      <Link to="/om-os" style={{ marginRight: '1rem', color: 'white' }}>Om os</Link>
-      <Link to="/sponsor" style={{ marginRight: '1rem', color: 'white' }}>Tilmeld som sponsor</Link>
-      <Link to="/tak" style={{ color: 'white' }}> Takker</Link>
-    </nav>
+    <div id="wrapper">
+      <nav className="nave__bar">
+        <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div className={`nav__links ${menuOpen ? 'open' : ''}`}>
+          <Link to="/" className="nav__link" onClick={() => setMenuOpen(false)}>Forside</Link>
+          <Link to="/om-os" className="nav__link" onClick={() => setMenuOpen(false)}>Om os</Link>
+          <Link to="/sponsor" className="nav__link" onClick={() => setMenuOpen(false)}>Tilmeld som sponsor</Link>
+          <Link to="/tak" className="nav__link" onClick={() => setMenuOpen(false)}>Børnelejren Takker</Link>
+        </div>
+      </nav>
+    </div>
   );
 }
